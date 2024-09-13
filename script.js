@@ -36,7 +36,21 @@ function processForm() {
             return;
         }
 
-        const newId = `night_animation_${Date.now()}`;
+        // Search for the object with the specific meta structure (meta.pca.version exists)
+        const targetObject = jsonData.find(item => {
+            return item.meta && item.meta.pca && item.meta.pca.version;
+        });
+
+        if (!targetObject) {
+            alert("No valid object with 'meta.pca.version' found in the JSON data.");
+            return;
+        }
+
+        // Use the target object's ID and append the suffix `_night_anim_{date}`
+        const baseId = targetObject.id;
+        const newId = `${baseId}_night_anim_${Date.now()}`;
+        
+        // Create the new night animation object
         const newObject = {
             "id": newId,
             "type": "animation",
@@ -52,27 +66,19 @@ function processForm() {
         // Add the new night animation object to the beginning of the JSON data
         jsonData.unshift(newObject);
 
-        // Search for the object with the specific meta structure (meta.pca.version exists)
-        const targetObject = jsonData.find(item => {
-            return item.meta && item.meta.pca && item.meta.pca.version;
-        });
-
-        // If we found the target object, add the animation reference
-        if (targetObject) {
-            // Ensure 'meta.pulnam' is added if it doesn't already exist
-            if (!targetObject.meta.pulnam) {
-                targetObject.meta.pulnam = {
-                    "Version": "0.1 Beta"
-                };
-            }
-
-            // Add the animation reference to the target object
-            targetObject.animation = [{
-                "id": newId,  // Use the generated ID
-                "x": xCoordinate,  // Use user input for x coordinate
-                "y": yCoordinate   // Use user input for y coordinate
-            }];
+        // Ensure 'meta.pulnam' is added if it doesn't already exist
+        if (!targetObject.meta.pulnam) {
+            targetObject.meta.pulnam = {
+                "Version": "0.1 Beta"
+            };
         }
+
+        // Add the animation reference to the target object
+        targetObject.animation = [{
+            "id": newId,  // Use the generated ID
+            "x": xCoordinate,  // Use user input for x coordinate
+            "y": yCoordinate   // Use user input for y coordinate
+        }];
 
         // Display the output JSON in the textarea
         document.getElementById('output').textContent = JSON.stringify(jsonData, null, 2);
