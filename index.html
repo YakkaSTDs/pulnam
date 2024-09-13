@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <!--General meta-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="IMG/ICON.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="IMG/ICON.png" type="image/x-icon" />
+    <meta
+      name="keywords"
+      content="kiki012,kiki 012,kiki012 github,kiki012 orang,kiki012 theotown,kiki012 theotown build,kiki012 theotown game,kiki012 theotown indonesia,Yakka,Yakka theotown,Yakka theotown build,Yakka theotown game,Yakka theotown indonesia,theotown,theotown plugin,theotown forum,theotown best city,theotown best plugins,theotown download,theotown discord,download plugin theotown"
+    />
+    <!--Ikon situs-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>Yakka Studios — Pembuat Animasi Malam</title>
+    <meta name="title" content="Yakka Studios — Pembuat Animasi Malam" />
+    <meta name="description" content="The main hub of Yakka Studios websites. You can search websites you're looking from this studio via here." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yakkastds.github.io/" />
+    <meta property="og:title" content="Yakka Studios — Pembuat Animasi Malam" />
+    <meta property="og:description" content="The main hub of Yakka Studios websites. You can search websites you're looking from this studio via here." />
+    <meta property="og:image" content="https://raw.githubusercontent.com/YakkaSTDs/yakkaSTDs.github.io/main/img/WEBBANNER.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://yakkastds.github.io/" />
+    <meta property="twitter:title" content="Yakka Studios — Pembuat Animasi Malam" />
+    <meta property="twitter:description" content="The main hub of Yakka Studios websites. You can search websites you're looking from this studio via here." />
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/YakkaSTDs/yakkaSTDs.github.io/main/img/WEBBANNER.jpg" />
+
+    <!-- Meta Tags Generated with https://metatags.io -->
+
+    <!-- stylesheet script-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="stylesheet" href="pos.css" type="text/css" />
+  </head>
+  <body class="d-flex flex-column vh-100 body-yk">
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark yk-nav-top fixed-top">
+      <div class="container-fluid">
+        <!-- Logo and Title always visible -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="img/yklgsvg.svg" alt="Logo" class="d-inline-block align-text-top logo" />
+          <span class="brand">Yakka Studios — Pembuat Animasi Malam.</span>
+        </a>
+      </div>
+    </nav>
+    <!-- Main Content -->
+    <div class="card rounded-0 yk-card my-5">
+      <div class="card-header yk-card-header">
+        <h3>Pembuat Animasi Malam Yakka</h3>
+      </div>
+      <div class="card-body yk-card-body">
+        <form id="animationForm">
+          <div class="mb-1">
+            <label for="jsonInput" class="form-label rounded-0">Unggah file json dari <a href="https://pca.svetikas.lt/">PCA</a> atau Tempel kode JSON tersebut.</label>
+            <input class="form-control rounded-0" type="file" id="jsonInput" accept=".json">
+            <textarea class="form-control rounded-0 mt-1" id="jsonPaste" rows="4" placeholder="Tempel Kode JSON disini"></textarea>
+          </div>
+          <div class="mb-1">
+            <label for="imageInput" class="form-label">Unggah Gambar .PNG untuk Animasi Malam:</label>
+            <input class="form-control rounded-0" type="file" id="imageInput" accept=".png">
+          </div>
+          <div class="row mb-1">
+            <div class="col-12">
+              Masukan koordinat,ini tidak otomatis,selalu tergantung dengan ukuran bangunan!<br><br>Anda dapat menggunakan plugin "Night Animation Tool" buatan 'ian untuk membantumu.
+            </div>
+            <div class="col-6">
+              <label for="xCoordinate" class="form-label">X:</label>
+              <input type="number" class="form-control rounded-0" id="xCoordinate">
+            </div>
+            <div class="col-6">
+              <label for="yCoordinate" class="form-label">Y:</label>
+              <input type="number" class="form-control rounded-0" id="yCoordinate">
+            </div>
+          </div>
+          <button type="button" class="btn btn-sm btn-secondary mt-1 rounded-0 w-100" onclick="processForm()">Buat Kode!</button>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-sm btn-secondary mt-1 rounded-0 w-100" onclick="copyToClipboard()">Salin ke Papan Klip</button><br>
+        <label for="output" class="form-label">Hasil Kode(Tinggal tempel ke file JSON (Pilih semua → Tempel).):</label>
+        <textarea id="output" class="form-control rounded-0" rows="8" readonly></textarea>
+      </div>
+    </div>
+    <div class="my-4"></div>
+  
+    <!-- Bottom Footer Navigation -->
+    <footer class="navbar navbar-dark yk-nav-bottom fixed-bottom">
+      <div class="container-fluid d-flex justify-content-between">
+        <p class="navbar-brand">
+          <a href="index_en.html" class="btn btn-sm btn-outline-light rounded-0"><i class="bi bi-translate"></i></a>
+          <a href="https://www.youtube.com/channel/UCEtTGm4VNKK1Ajaz7yyF0gQ" class="btn btn-sm btn-outline-light rounded-0"><i class="bi bi-youtube"></i></a>
+          <a href="https://www.instagram.com/kiki012.id" class="btn btn-sm btn-outline-light rounded-0"><i class="bi bi-instagram"></i></a>
+          <a href="https://vm.tiktok.com/ZS25mHJ1h/" class="btn btn-sm btn-outline-light rounded-0"><i class="bi bi-tiktok"></i></a>
+          <a href="https://saweria.co/yakka" class="btn btn-sm btn-outline-light rounded-0"><i class="bi bi-cash"></i></a>
+          <a href="mailto:yakkastudiosofficial@gmail.com" class="btn btn-sm btn-outline-light rounded-0"><i class="bi bi-envelope"></i></a><br>
+          <span class="text-white pb-0">© 2024 Yakka Studios</span>
+        </p>
+        
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
