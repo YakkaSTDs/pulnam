@@ -52,18 +52,26 @@ function processForm() {
         // Add the new night animation object to the beginning of the JSON data
         jsonData.unshift(newObject);
 
-        // Get the object that comes immediately after the newly inserted object
-        if (jsonData.length > 1) {  // Ensure there's an object after the new one
-            const nextObject = jsonData[1];  // The object right after the new animation object
+        // Search for the object with the specific meta structure (meta.pca.version exists)
+        const targetObject = jsonData.find(item => {
+            return item.meta && item.meta.pca && item.meta.pca.version;
+        });
 
-            // Add the animation reference to the next object
-            if (nextObject) {
-                nextObject.animation = [{
-                    "id": newId,  // Use the generated ID
-                    "x": xCoordinate,  // Use user input for x coordinate
-                    "y": yCoordinate   // Use user input for y coordinate
-                }];
+        // If we found the target object, add the animation reference
+        if (targetObject) {
+            // Ensure 'meta.pulnam' is added if it doesn't already exist
+            if (!targetObject.meta.pulnam) {
+                targetObject.meta.pulnam = {
+                    "Version": "0.1 Beta"
+                };
             }
+
+            // Add the animation reference to the target object
+            targetObject.animation = [{
+                "id": newId,  // Use the generated ID
+                "x": xCoordinate,  // Use user input for x coordinate
+                "y": yCoordinate   // Use user input for y coordinate
+            }];
         }
 
         // Display the output JSON in the textarea
